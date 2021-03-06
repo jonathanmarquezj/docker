@@ -1,0 +1,23 @@
+version: "3.1"
+
+services:
+  db:
+    container_name: servidor_mysql-php
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_ROOT_PASSWORD: asdasd
+    volumes:
+      - /opt/mysql_drupal-php:/var/lib/mysql
+
+  drupal:
+    container_name: drupal
+    image: jonathan/drupal:v1
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - /opt/drupal:/var/log/apache2
